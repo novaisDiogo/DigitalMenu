@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:page="clr-namespace:DigitalMenu.View"
+             mc:Ignorable="d"
+             x:Class="DigitalMenu.Master.MasterPage">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Categorias">
+            <ListView x:Name="ViewCategorias" HasUnevenRows="True" ItemSelected="CategoriaSelecionada">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="Black" Spacing="20">
+                                <Label Text="{Binding TipoCategoria}" TextColor="White" FontAttributes="Bold" Padding="20" HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <page:Inicio/>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -11,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace DigitalMenu.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Inicio : ContentPage
+    public partial class Produtos : ContentPage
     {
-        public Inicio()
+        public Produtos(Categoria categoria)
         {
             InitializeComponent();
+            ProdCat.Text = categoria.TipoCategoria;
         }
     }
 }
