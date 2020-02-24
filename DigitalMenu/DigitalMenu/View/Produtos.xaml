@@ -7,9 +7,35 @@
              x:Class="DigitalMenu.View.Produtos">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="ProdCat" Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label x:Name="TituloCategoria" Text=""/>
+            </StackLayout>
+            <StackLayout>
+                <ListView x:Name="ListaProduto" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="Imagem" Grid.Column="0" Grid.Row="0"/>
+                                    <StackLayout Grid.Column="1" Grid.Row="0">
+                                        <Label Text="{Binding NomeProduto}" />
+                                        <Label Text="{Binding Adicionais}" />
+                                    </StackLayout>
+                                    <Button Text="Adicionar" Grid.Column="2" Grid.Row="0" Clicked="DetalheProdutoAction"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

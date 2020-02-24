@@ -6,6 +6,9 @@
              xmlns:page="clr-namespace:DigitalMenu.View"
              mc:Ignorable="d"
              x:Class="DigitalMenu.Master.MasterPage">
+    <MasterDetailPage.ToolbarItems>
+        <ToolbarItem Text="Carrinho"/>
+    </MasterDetailPage.ToolbarItems>
     <MasterDetailPage.Master>
         <ContentPage Title="Categorias">
             <ListView x:Name="ViewCategorias" HasUnevenRows="True" ItemSelected="CategoriaSelecionada">

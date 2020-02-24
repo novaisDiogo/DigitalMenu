@@ -16,7 +16,20 @@ namespace DigitalMenu.View
         public Produtos(Categoria categoria)
         {
             InitializeComponent();
-            ProdCat.Text = categoria.TipoCategoria;
+            TituloCategoria.Text = categoria.TipoCategoria;
+            List<Produto> produtos = new List<Produto>();
+            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Natural", NomeProduto = "Agua" });
+            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Com gelo", NomeProduto = "Coca-Cola" });
+            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Com açucar", NomeProduto = "Suco Natural" });
+            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Laranja", NomeProduto = "Fanta" });
+            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Com limão", NomeProduto = "Pepsi" });
+
+            ListaProduto.ItemsSource = produtos;
+        }
+
+        private void DetalheProdutoAction(object sender, EventArgs args)
+        {
+            App.Current.MainPage = new View.DetalheProduto();
         }
     }
 }
