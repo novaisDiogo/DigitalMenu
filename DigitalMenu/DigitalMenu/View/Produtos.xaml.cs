@@ -1,4 +1,5 @@
 ﻿using DigitalMenu.Model;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,11 @@ namespace DigitalMenu.View
             ListaProduto.ItemsSource = produtos;
         }
 
-        private void DetalheProdutoAction(object sender, EventArgs args)
+        private async void DetalheProdutoAction(object sender, EventArgs args)
         {
-            App.Current.MainPage = new View.DetalheProduto();
+            var page = new PopUpPage.PopUpDetalheProduto();
+
+            await PopupNavigation.Instance.PushAsync(page);
         }
     }
 }
