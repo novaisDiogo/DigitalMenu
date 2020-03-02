@@ -1,4 +1,5 @@
 ﻿using DigitalMenu.Model;
+using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,17 @@ namespace DigitalMenu.PopUpPage
             opcoes.Add(new Opcoes { NomeOpcoes = "Sukita laranja" });
             opcoes.Add(new Opcoes { NomeOpcoes = "Sukita Uva" });
 
+            List<Adicional> adicionals = new List<Adicional>();
+            adicionals.Add(new Adicional { NomeAdicional = "Com Gelo" });
+            adicionals.Add(new Adicional { NomeAdicional = "Com Limão" });
+            adicionals.Add(new Adicional { NomeAdicional = "Com Laranja" });
+            adicionals.Add(new Adicional { NomeAdicional = "Com Açucar" });
+            adicionals.Add(new Adicional { NomeAdicional = "Sem Açucar" });
+
             ListaOpcoes.ItemsSource = opcoes;
+            ListaAdicionais.ItemsSource = adicionals;
+            ListOptions.IsVisible = true;
+            Quantity.IsVisible = false;
         }
 
         protected override async Task OnAppearingAnimationEndAsync()
@@ -37,6 +48,16 @@ namespace DigitalMenu.PopUpPage
         protected override async Task OnDisappearingAnimationBeginAsync()
         {
             
+        }
+
+        private void VoltarAction(object sender, EventArgs args)
+        {
+            Navigation.PopPopupAsync();
+        }
+        private void ItemSelect(object sender, SelectedItemChangedEventArgs args)
+        {
+            ListOptions.IsVisible = false;
+            Quantity.IsVisible = true;
         }
     }
 }
