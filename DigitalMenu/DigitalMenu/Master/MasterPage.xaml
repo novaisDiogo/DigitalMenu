@@ -7,16 +7,16 @@
              mc:Ignorable="d"
              x:Class="DigitalMenu.Master.MasterPage">
     <MasterDetailPage.ToolbarItems>
-        <ToolbarItem Text="Carrinho"/>
+        <ToolbarItem Text="Carrinho" Clicked="CarrinhoAction"/>
     </MasterDetailPage.ToolbarItems>
     <MasterDetailPage.Master>
-        <ContentPage Title="Categorias">
+        <ContentPage Title="Categorias" >
             <ListView x:Name="ViewCategorias" HasUnevenRows="True" ItemSelected="CategoriaSelecionada">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="Black" Spacing="20">
-                                <Label Text="{Binding TipoCategoria}" TextColor="White" FontAttributes="Bold" Padding="20" HorizontalOptions="CenterAndExpand"/>
+                            <StackLayout BackgroundColor="Black" Spacing="20" Margin="0">
+                                <Label Text="{Binding TipoCategoria}" TextColor="White" FontAttributes="Bold" Padding="20" FontSize="30" HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

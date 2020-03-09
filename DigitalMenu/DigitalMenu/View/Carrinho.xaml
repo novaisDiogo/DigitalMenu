@@ -6,14 +6,22 @@
              mc:Ignorable="d"
              x:Class="DigitalMenu.View.Carrinho">
     <ContentPage.Content>
-        <ListView>
+        <ListView x:Name="ListaCarrinho">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding }"/>
-                            <Button Text="Editar"/>
-                            <Button Text="Remover"/>
+                            <Label Text="{Binding NomeOpcoes}" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="Editar" HorizontalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="EditarAction" CommandParameter="{Binding .}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text="Remover" HorizontalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="RemoverAction" CommandParameter="{Binding .}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

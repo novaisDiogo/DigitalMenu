@@ -34,5 +34,9 @@ namespace DigitalMenu.Master
 
             Detail = new View.Produtos(categoria);
         }
+        private void CarrinhoAction(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new View.Carrinho());
+        }
     }
 }
