@@ -59,5 +59,15 @@ namespace DigitalMenu.PopUpPage
             ListOptions.IsVisible = false;
             Quantity.IsVisible = true;
         }
+        private void Opcao1Action(object sender, EventArgs args)
+        {
+            ListOptions.IsVisible = true;
+            Quantity.IsVisible = false;
+        }
+        private void Opcao2Action(object sender, EventArgs args)
+        {
+            ListOptions.IsVisible = false;
+            Quantity.IsVisible = true;
+        }
     }
 }

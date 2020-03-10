@@ -6,26 +6,43 @@
              mc:Ignorable="d"
              x:Class="DigitalMenu.View.Carrinho">
     <ContentPage.Content>
-        <ListView x:Name="ListaCarrinho">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding NomeOpcoes}" HorizontalOptions="StartAndExpand"/>
-                            <Label Text="Editar" HorizontalOptions="End">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="EditarAction" CommandParameter="{Binding .}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label Text="Remover" HorizontalOptions="End">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="RemoverAction" CommandParameter="{Binding .}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="ListaCarrinho" Grid.Row="0" Grid.Column="0" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding NomeOpcoes}" Grid.Row="0" Grid.Column="0" FontSize="30"/>
+                                <Label Text="Editar" Grid.Row="0" Grid.Column="1" FontSize="30" HorizontalOptions="EndAndExpand" Margin="10">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="EditarAction" CommandParameter="{Binding .}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="Remover" Grid.Row="0" Grid.Column="2" FontSize="30" HorizontalOptions="StartAndExpand" Margin="10">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="RemoverAction" CommandParameter="{Binding .}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

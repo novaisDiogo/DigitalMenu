@@ -25,69 +25,73 @@
         </Grid.ColumnDefinitions>
         <Frame BackgroundColor="White" HasShadow="True" CornerRadius="10" Margin="20,0,20,0" VerticalOptions="Center"
            HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" HeightRequest="600">
-            <StackLayout Spacing="5">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="40"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="350"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Text="Voltar" Grid.Column="0" Grid.Row="0" VerticalOptions="Start" HorizontalOptions="Start" Clicked="VoltarAction"/>
-                    <BoxView BackgroundColor="Gray" Grid.Column="0" Grid.Row="1"/>
-                    <Label Text="" HorizontalOptions="Center" Grid.Column="0" Grid.Row="2"/>
-                    <StackLayout Grid.Column="0" Grid.Row="3">
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="lbl"/>
-                            <Label Text="Escolha uma Opção"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Quantidade e Opcionais"/>
-                        </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Text="Voltar" Grid.Column="0" Grid.Row="0" VerticalOptions="Start" HorizontalOptions="Start" Clicked="VoltarAction"/>
+                <BoxView BackgroundColor="Gray" Grid.Column="0" Grid.Row="1"/>
+                <Label Text="" HorizontalOptions="Center" Grid.Column="0" Grid.Row="2"/>
+                <StackLayout Grid.Column="0" Grid.Row="3">
+                    <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand">
+                        <Label Text="Escolha uma Opção" TextColor="Black" FontSize="24"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Opcao1Action" CommandParameter="{Binding .}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="4">
-                        <Label Text="SUBTOTAL"/>
-                        <Label Text=""/>
+                    <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="LightGray" HorizontalOptions="StartAndExpand">
+                        <Label Text="Quantidade e Opcionais" TextColor="Black" FontSize="24"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Opcao2Action" CommandParameter="{Binding .}"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
-                    <StackLayout x:Name="ListOptions" Grid.Column="1" Grid.RowSpan="5">
-                        <ListView x:Name="ListaOpcoes" ItemSelected="ItemSelect" HasUnevenRows="True">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout>
-                                            <Label Text="{Binding NomeOpcoes}"/>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackLayout>
-                    <StackLayout x:Name="Quantity" Grid.Column="1" Grid.RowSpan="5">
-                        <Stepper 
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="4">
+                    <Label Text="SUBTOTAL"/>
+                    <Label Text=""/>
+                </StackLayout>
+                <StackLayout x:Name="ListOptions" Grid.Column="1" Grid.RowSpan="5" VerticalOptions="StartAndExpand">
+                    <ListView x:Name="ListaOpcoes" ItemSelected="ItemSelect" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding NomeOpcoes}" FontSize="30" TextColor="Black" Padding="5"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <StackLayout x:Name="Quantity" Grid.Column="1" Grid.Row="1" Grid.RowSpan="4">
+                    <Stepper 
                         Maximum="10"
                         Increment="1"
                         HorizontalOptions="Center"
+                        VerticalOptions="StartAndExpand"
                         />
-                        <ListView x:Name="ListaAdicionais">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout>
-                                            <Label x:Name="Adicional" Text="{Binding NomeAdicional}"/>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        <Button Text="Adicionar ao carrinho"/>
-                    </StackLayout>
-                </Grid>
-            </StackLayout>
+                    <ListView x:Name="ListaAdicionais" VerticalOptions="CenterAndExpand">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label x:Name="Adicional" Text="{Binding NomeAdicional}" FontSize="30"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Text="Adicionar ao carrinho" VerticalOptions="EndAndExpand"/>
+                </StackLayout>
+            </Grid>
         </Frame>
     </Grid>
 </pages:PopupPage>
