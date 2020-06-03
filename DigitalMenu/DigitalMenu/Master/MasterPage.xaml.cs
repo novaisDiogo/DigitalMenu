@@ -1,4 +1,6 @@
 ﻿using DigitalMenu.Model;
+using RestSharp;
+using RestSharp.Serialization.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,30 +15,34 @@ namespace DigitalMenu.Master
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MasterPage : MasterDetailPage
     {
-        public MasterPage()
+        public int OrderId { get; set; }
+        public int IdTable { get; set; }
+        public MasterPage(int orderId, int table)
         {
             InitializeComponent();
 
-            List<Categoria> categorias = new List<Categoria>();
+            OrderId = orderId;
+            IdTable = table;
 
-            categorias.Add(new Categoria { TipoCategoria = "Bebidas" });
-            categorias.Add(new Categoria { TipoCategoria = "Pratos Comerciais" });
-            categorias.Add(new Categoria { TipoCategoria = "Pratos Executivos" });
-            categorias.Add(new Categoria { TipoCategoria = "Saladas" });
-            categorias.Add(new Categoria { TipoCategoria = "Sobremesas" });
+            RestClient categories = new RestClient("http://13.90.44.28:8080/api/Categories/");
+            RestRequest requestCategories = new RestRequest(Method.GET);
 
-            ViewCategorias.ItemsSource = categorias;
+            IRestResponse categoriesResponse = categories.Execute(requestCategories);
+
+            List<Category> categories1 = new JsonDeserializer().Deserialize<List<Category>>(categoriesResponse);
+
+            ViewCategorias.ItemsSource = categories1;
         }
 
         private void CategoriaSelecionada(object sender, SelectedItemChangedEventArgs args)
         {
-            Categoria categoria = (Categoria)args.SelectedItem;
+            Category categoria = (Category)args.SelectedItem;
 
-            Detail = new View.Produtos(categoria);
+            Detail = new View.Produtos(categoria, OrderId);
         }
         private void CarrinhoAction(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new View.Carrinho());
+            Navigation.PushAsync(new View.Carrinho(OrderId, IdTable));
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using DigitalMenu.Model;
+using RestSharp;
+using RestSharp.Serialization.Json;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,23 +17,39 @@ namespace DigitalMenu.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Produtos : ContentPage
     {
-        public Produtos(Categoria categoria)
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public string ProductImage { get; set; }
+
+        public Produtos(Category categoria, int orderId)
         {
             InitializeComponent();
-            TituloCategoria.Text = categoria.TipoCategoria;
-            List<Produto> produtos = new List<Produto>();
-            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Natural", NomeProduto = "Agua" });
-            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Com gelo", NomeProduto = "Coca-Cola" });
-            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Com açucar", NomeProduto = "Suco Natural" });
-            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Laranja", NomeProduto = "Fanta" });
-            produtos.Add(new Produto { Categoria = categoria.ToString(), Imagem = "Imagem", Adicionais = "Com limão", NomeProduto = "Pepsi" });
 
-            ListaProduto.ItemsSource = produtos;
+            OrderId = orderId;
+            TituloCategoria.Text = categoria.Description;
+
+            RestClient products = new RestClient("http://13.90.44.28:8080/api/Products/" + categoria.Id);
+            RestRequest requestProducts = new RestRequest(Method.GET);
+
+            IRestResponse responseProducts = products.Execute(requestProducts);
+
+            List<RestProductCategory> dProducts = new JsonDeserializer().Deserialize<List<RestProductCategory>>(responseProducts);
+
+            ListaProduto.ItemsSource = dProducts;
         }
 
         private async void DetalheProdutoAction(object sender, EventArgs args)
         {
-            var page = new PopUpPage.PopUpDetalheProduto();
+            Button btnDetails = (Button)sender;
+            RestProductCategory restProduct = btnDetails.CommandParameter as RestProductCategory;
+            var productId = restProduct.S.Select(c => c.ProductId).FirstOrDefault();
+            var productImage = restProduct.Image;
+
+            ProductId = productId;
+            ProductImage = productImage;
+
+
+            var page = new PopUpPage.PopUpDetalheProduto(OrderId, ProductId, productImage);
 
             await PopupNavigation.Instance.PushAsync(page);
         }

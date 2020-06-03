@@ -10,7 +10,7 @@ namespace DigitalMenu
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Master.MasterPage());
+            MainPage = new View.Apresentacao();
         }
 
         protected override void OnStart()
