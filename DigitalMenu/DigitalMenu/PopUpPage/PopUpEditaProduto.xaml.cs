@@ -37,6 +37,7 @@ namespace DigitalMenu.PopUpPage
             OrderItem.AdditionalId = orderItem.AdditionalId;
             OrderItem.OptionsId = orderItem.OptionsId;
             IdTable = table;
+            Valor = orderItem.Value / orderItem.Quantity;
 
             step.Value = orderItem.Quantity;
             ValorStepper.Text = orderItem.Quantity.ToString();
