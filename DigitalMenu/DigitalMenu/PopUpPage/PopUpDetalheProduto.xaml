@@ -67,7 +67,7 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Description}" FontSize="30" TextColor="Black" Padding="5" HorizontalOptions="StartAndExpand"/>
                                         <Label Text="R$$" FontSize="30" TextColor="Black" Padding="5" HorizontalOptions="End"/>
-                                        <Label Text="{Binding Value}" FontSize="30" TextColor="Black" Padding="5" HorizontalOptions="End"/>
+                                        <Label Text="{Binding Value, StringFormat='{0:F2}'}" FontSize="30" TextColor="Black" Padding="5" HorizontalOptions="End"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>

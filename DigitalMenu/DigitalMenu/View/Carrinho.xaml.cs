@@ -42,7 +42,7 @@ namespace DigitalMenu.View
             }
 
             Pedido.Text = orderId.ToString();
-            Total.Text = TotalValue.ToString();
+            Total.Text = TotalValue.ToString("F2");
         }
 
         private async void EditarAction(object sender, EventArgs args)

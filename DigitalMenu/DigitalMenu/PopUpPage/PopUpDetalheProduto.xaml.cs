@@ -6,6 +6,7 @@ using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -71,7 +72,7 @@ namespace DigitalMenu.PopUpPage
             double subtotal = args.NewValue * Valor;
             OrderItem.Value = subtotal;
 
-            lblSubTotal.Text = subtotal.ToString();
+            lblSubTotal.Text = subtotal.ToString("F2");
         }
         private void VoltarAction(object sender, EventArgs args)
         {
@@ -82,9 +83,9 @@ namespace DigitalMenu.PopUpPage
             RestProductOption productOption = (RestProductOption)args.SelectedItem;
 
             OrderItem.OptionsId = productOption.S.Select(c => c.OptionsId).FirstOrDefault();
-            Valor = productOption.Value;
+            Valor = Double.Parse(productOption.Value.ToString("F2"));
             OrderItem.Value = Valor;
-            lblSubTotal.Text = Valor.ToString();
+            lblSubTotal.Text = Valor.ToString("F2");
             OrderItem.Quantity = 1;
             ValorStepper.Text = "1";
 
@@ -121,17 +122,23 @@ namespace DigitalMenu.PopUpPage
         }
         private void ActionButtonCarrinho(object sender, EventArgs args)
         {
-            string output = JsonConvert.SerializeObject(OrderItem);
+            if(OrderItem.AdditionalId == null)
+            {
+                DisplayAlert("Adicional", "Faltou escolher o adicional", "Fechar");
+            }
+            else
+            {
+                string output = JsonConvert.SerializeObject(OrderItem);
 
-            RestClient faturaPedido = new RestClient(String.Format("http://13.90.44.28:8080/api/OrderItems/"));
-            RestRequest request = new RestRequest(Method.POST);
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddParameter("application/json", output, ParameterType.RequestBody);
-            IRestResponse responseFatura = faturaPedido.Execute(request);
+                RestClient faturaPedido = new RestClient(String.Format("http://13.90.44.28:8080/api/OrderItems/"));
+                RestRequest request = new RestRequest(Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", output, ParameterType.RequestBody);
+                IRestResponse responseFatura = faturaPedido.Execute(request);
 
-            Navigation.PopPopupAsync();
-
+                Navigation.PopPopupAsync();
+            }
         }
     }
 }

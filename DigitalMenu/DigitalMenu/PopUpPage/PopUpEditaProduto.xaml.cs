@@ -91,7 +91,7 @@ namespace DigitalMenu.PopUpPage
             double subtotal = args.NewValue * Valor;
             OrderItem.Value = subtotal;
 
-            lblSubTotal.Text = subtotal.ToString();
+            lblSubTotal.Text = subtotal.ToString("N2");
         }
         private void VoltarAction(object sender, EventArgs args)
         {
@@ -104,7 +104,7 @@ namespace DigitalMenu.PopUpPage
             OrderItem.OptionsId = productOption.S.Select(c => c.OptionsId).FirstOrDefault();
             Valor = productOption.Value;
             OrderItem.Value = Valor;
-            lblSubTotal.Text = Valor.ToString();
+            lblSubTotal.Text = Valor.ToString("N2");
             OrderItem.Quantity = 1;
             ValorStepper.Text = "1";
             step.Value = 1;

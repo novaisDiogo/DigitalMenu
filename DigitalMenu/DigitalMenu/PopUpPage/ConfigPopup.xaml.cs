@@ -40,9 +40,16 @@ namespace DigitalMenu.PopUpPage
         {
             Database database = new Database();
 
+            RestClient restToken = new RestClient("http://13.90.44.28:8080/api/keycadis/1");
+            RestRequest resquestToken = new RestRequest(Method.GET);
+            IRestResponse responseToken = restToken.Execute(resquestToken);
+
+            KeyCadi keyCadi = new JsonDeserializer().Deserialize<KeyCadi>(responseToken);
+
+
             var success = database.ConsultaToken(txtSecret.Text);
 
-            if (success)
+            if (keyCadi.Password == txtSecret.Text)
             {
                 Acesso.IsVisible = false;
                 Opcoes.IsVisible = true;
