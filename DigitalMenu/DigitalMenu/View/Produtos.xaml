@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:DigitalMenu.Converters"
              mc:Ignorable="d"
              x:Class="DigitalMenu.View.Produtos">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ConverterBase64ImageSource x:Key="Base64ToImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="White">
             <StackLayout Padding="40" BackgroundColor="LightGray">
                 <Label x:Name="TituloCategoria" Text="" HorizontalOptions="CenterAndExpand" FontSize="40"/>
             </StackLayout>
@@ -15,22 +21,27 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="5">
+                                <Grid Margin="5" BackgroundColor="LightGray">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="200"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="80"/>
                                     </Grid.RowDefinitions>
-                                    <Label Text="Imagem" Grid.Column="0" Grid.RowSpan="2"/>
-                                    <StackLayout Grid.Column="1" Grid.RowSpan="2">
-                                        <Label Text="{Binding NomeProduto}" FontSize="24"/>
-                                        <Label Text="{Binding Adicionais}" FontSize="24"/>
+                                    <StackLayout Grid.Column="0" Grid.RowSpan="2">
+                                        <Image x:Name="imageProduct" Source="{Binding Image, Converter={StaticResource Base64ToImageConverter}}" WidthRequest="300" HeightRequest="200" Margin="15, 0, 0, 0" Aspect="AspectFill"/>
                                     </StackLayout>
-                                    <Button Text="Adicionar" Grid.Column="2" Grid.Row="1" Clicked="DetalheProdutoAction" WidthRequest="15" HeightRequest="10"/>
+                                    <StackLayout Grid.Column="1" Grid.RowSpan="2">
+                                        <Label Text="{Binding Name}" FontSize="24" TextColor="Black"/>
+                                        <Label Text="{Binding Description}" FontSize="18" TextColor="Black"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2" Grid.Row="1">
+                                        <Button Text="Adicionar"  Clicked="DetalheProdutoAction" VerticalOptions="End" HorizontalOptions="End"
+                                             BackgroundColor="#D2691E" TextColor="White" CommandParameter="{Binding .}" Margin="0,0,15,0"/>
+                                    </StackLayout>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

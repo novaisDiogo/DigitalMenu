@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DigitalMenu.View.Apresentacao">
+    <RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0" Padding="0">
+        <Image Source="initial.jpg" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFill"
+                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}"/>
+
+        <StackLayout Orientation="Vertical" 
+                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}">
+            <Label Text="Seja bem vindo!" TextColor="White" HorizontalOptions="CenterAndExpand" FontSize="60"/>
+            <Label Text="Tenha uma boa apetite!" TextColor="White" HorizontalOptions="CenterAndExpand" FontSize="60"/>
+            <StackLayout  VerticalOptions="CenterAndExpand">
+                <Button Text="Iniciar" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="#8B4513"
+                    Clicked="btnActionMaster" TextColor="White" WidthRequest="200" FontSize="30"/>
+            </StackLayout>
+            <StackLayout VerticalOptions="End" HorizontalOptions="End" Margin="2">
+                <ImageButton Source="config2.png" WidthRequest="80" HeightRequest="80" VerticalOptions="End" HorizontalOptions="End"
+                             Clicked="btnActionConfigAsync"/>
+            </StackLayout>
+        </StackLayout>
+    </RelativeLayout>
+</ContentPage>

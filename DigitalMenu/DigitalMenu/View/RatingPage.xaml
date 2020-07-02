@@ -4,12 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="DigitalMenu.View.Inicio">
+             x:Class="DigitalMenu.View.RatingPage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <Label Text="Use o menu lateral para navegar entre os produtos."
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="30" />
+                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

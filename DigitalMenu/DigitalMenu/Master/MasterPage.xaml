@@ -10,18 +10,22 @@
         <ToolbarItem Text="Carrinho" Clicked="CarrinhoAction"/>
     </MasterDetailPage.ToolbarItems>
     <MasterDetailPage.Master>
-        <ContentPage Title="Categorias" >
-            <ListView x:Name="ViewCategorias" HasUnevenRows="True" ItemSelected="CategoriaSelecionada">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout BackgroundColor="Black" Spacing="20" Margin="0">
-                                <Label Text="{Binding TipoCategoria}" TextColor="White" FontAttributes="Bold" Padding="20" FontSize="30" HorizontalOptions="CenterAndExpand"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <ContentPage Title="Categorias">
+            <StackLayout Margin="0" Spacing="0" Padding="0" BackgroundColor="Black">
+                
+                <ListView x:Name="ViewCategorias" HasUnevenRows="True" ItemSelected="CategoriaSelecionada" SeparatorColor="White" BackgroundColor="Black" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="Black" Spacing="0" Margin="0">
+                                    <Label Text="{Binding Description}" TextColor="White" FontAttributes="Bold" Padding="20" FontSize="30" HorizontalOptions="CenterAndExpand" Margin="0"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Image Source="clientLogoOriginal.png" Aspect="AspectFit" WidthRequest="200" HeightRequest="200" Margin="0" VerticalOptions="End"/>
+            </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
